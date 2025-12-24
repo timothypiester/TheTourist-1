@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Code Checker</title>
+  <style>
+    body {
+      background: #0e0e0e;
+      color: #eaeaea;
+      font-family: system-ui, sans-serif;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      margin: 0;
+    }
+    .box {
+      background: #151515;
+      border: 1px solid #2a2a2a;
+      border-radius: 14px;
+      padding: 24px;
+      width: 100%;
+      max-width: 420px;
+      text-align: center;
+    }
+    input {
+      width: 100%;
+      padding: 14px;
+      font-size: 20px;
+      border-radius: 8px;
+      border: none;
+      margin-bottom: 12px;
+      text-align: center;
+    }
+    button {
+      width: 100%;
+      padding: 14px;
+      font-size: 18px;
+      border-radius: 8px;
+      border: none;
+      cursor: pointer;
+      background: #ffffff;
+      color: #000;
+      font-weight: 600;
+    }
+    .message {
+      margin-top: 16px;
+      min-height: 24px;
+    }
+    .ok { color: #4ade80; }
+    .bad { color: #f87171; }
+  </style>
+</head>
+<body>
+
+<div class="box">
+  <h2>Enter Code</h2>
+  <input id="code" placeholder="•••" maxlength="12">
+  <button onclick="checkCode()">Check</button>
+  <div id="message" class="message"></div>
+</div>
+
+<script>
+  const CODES = {
+    "124": "Correct. Open Envelope #2.",
+    "TRAINCAR": "Correct. Proceed to the Train Car.",
+    "REVENANT": "Correct. Read the final note."
+  };
+
+  function checkCode() {
+    const input = document.getElementById("code").value.trim().toUpperCase();
+    const message = document.getElementById("message");
+
+    if (!input) {
+      message.textContent = "Enter a code.";
+      message.className = "message bad";
+      return;
+    }
+
+    if (CODES[input]) {
+      message.textContent = "✅ " + CODES[input];
+      message.className = "message ok";
+    } else {
+      message.textContent = "❌ Incorrect code. Try again.";
+      message.className = "message bad";
+    }
+  }
+</script>
+
+</body>
+</html>
